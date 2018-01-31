@@ -23,7 +23,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3-alpine'
-                    args '-v /root/.m2:/root/.m2'
+                    args '-v /root/.m2:/root/.m2 -v target:/target'
                 }
             }
             steps {
@@ -40,7 +40,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock -v .:/var/run/docker.sock'
                 }
             }
             steps {
