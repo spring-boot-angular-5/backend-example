@@ -21,7 +21,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                docker.build("demo-app-${env.BUILD_NUMBER}")
             }
             post {
                 always {
