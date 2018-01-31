@@ -40,7 +40,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock -v .:/var/run/docker.sock'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock -v target:/target'
                 }
             }
             steps {
