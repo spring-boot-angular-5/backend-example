@@ -21,13 +21,23 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                sh 'docker build . -t demo-app'
-                sh 'docker run -p 8081:8080 demo-app'
             }
             post {
                 always {
                     archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
                 }
+            }
+        }
+
+        stage('Run') {
+            agent {
+                docker {
+                    image 'docker'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
+            steps {
+                sh 'docker build . -t demo-app'
             }
         }
     }
