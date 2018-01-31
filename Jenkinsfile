@@ -39,7 +39,7 @@ pipeline {
         stage('Run') {
             agent {
                 docker {
-                    image 'docker'
+                    image 'jdk-8'
                     args '-v /var/run/docker.sock:/var/run/docker.sock -v target:/target'
                 }
             }
