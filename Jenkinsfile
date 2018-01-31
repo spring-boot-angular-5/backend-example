@@ -21,8 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                sh 'docker build . -t demo-app:${env.BUILD_NUMBER}'
-                sh 'docker run -p 8081:8080 demo-app:${env.BUILD_NUMBER}'
+                sh 'docker build . -t demo-app'
+                sh 'docker run -p 8081:8080 demo-app'
             }
             post {
                 always {
